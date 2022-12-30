@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Statistics } from 'components/Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Section } from 'components/Section/Section';
+import { Notification } from 'components/Notification/Notification';
 
 export class Counter extends Component {
 
@@ -21,7 +22,7 @@ export class Counter extends Component {
 
   render() {
     return (
-<>
+      <>
         <Section
           title="Please leave feedback"
         >
@@ -34,6 +35,9 @@ export class Counter extends Component {
         <Section
           title="Statistics"
         >
+          <Notification
+            message="There is no feedback"
+          />
           <Statistics
             good={this.state.good}
             neutral={this.state.neutral}
