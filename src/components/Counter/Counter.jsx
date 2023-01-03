@@ -35,16 +35,19 @@ export class Counter extends Component {
         <Section
           title="Statistics"
         >
-          <Notification
-            message="There is no feedback"
-          />
-          <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+          {this.countTotalFeedback() > 0 ? (
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification
+              message="There is no feedback"
+            />
+          )}
         </Section>
       </>
     )
