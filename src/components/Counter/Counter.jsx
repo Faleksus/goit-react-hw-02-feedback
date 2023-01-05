@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Statistics } from 'components/Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
@@ -21,6 +22,9 @@ export class Counter extends Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
+    const { handleCounter, countTotalFeedback, countPositiveFeedbackPercentage } = this;
+
     return (
       <>
         <Section
@@ -28,20 +32,20 @@ export class Counter extends Component {
         >
           <FeedbackOptions
             options={Object.keys(this.state)}
-            onLeaveFeedback={this.handleCounter}
+            onLeaveFeedback={handleCounter}
           />
         </Section>
 
         <Section
           title="Statistics"
         >
-          {this.countTotalFeedback() > 0 ? (
+          {countTotalFeedback() > 0 ? (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
             />
           ) : (
             <Notification
@@ -53,3 +57,12 @@ export class Counter extends Component {
     )
   }
 }
+
+Counter.propTypes = {
+  good: PropTypes.string,
+  neutral: PropTypes.string,
+  bad: PropTypes.string,
+  handleCounter: PropTypes.func,
+  countTotalFeedback: PropTypes.func,
+  countPositiveFeedbackPercentage: PropTypes.func,
+};
