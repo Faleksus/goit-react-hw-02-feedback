@@ -23,7 +23,7 @@ export class Counter extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-    const { handleCounter, countTotalFeedback, countPositiveFeedbackPercentage } = this;
+    const { countTotalFeedback, countPositiveFeedbackPercentage } = this;
 
     return (
       <>
@@ -32,7 +32,7 @@ export class Counter extends Component {
         >
           <FeedbackOptions
             options={Object.keys(this.state)}
-            onLeaveFeedback={handleCounter}
+            onLeaveFeedback={this.handleCounter}
           />
         </Section>
 
@@ -59,9 +59,6 @@ export class Counter extends Component {
 }
 
 Counter.propTypes = {
-  good: PropTypes.string,
-  neutral: PropTypes.string,
-  bad: PropTypes.string,
   handleCounter: PropTypes.func,
   countTotalFeedback: PropTypes.func,
   countPositiveFeedbackPercentage: PropTypes.func,
